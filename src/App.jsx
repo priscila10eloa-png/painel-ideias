@@ -1,4 +1,6 @@
+
 import { useState } from "react";
+import "./App.css";
 
 function App() {
   const [ideias, setIdeias] = useState([]);
@@ -24,8 +26,28 @@ function App() {
     setErro("");
   }
 
+  function alternarFeita(id) {
+    setIdeias((atual) =>
+      atual.map((ideia) =>
+        ideia.id === id
+          ? { ...ideia, feita: !ideia.feita }
+          : ideia
+      )
+    );
+  }
+
+  function aoRemover(id) {
+    setIdeias((atual) =>
+      atual.filter((ideia) => ideia.id !== id)
+    );
+  }
+
+  const ideiasConcluidas = ideias.filter(
+    (ideia) => ideia.feita
+  ).length;
+
   return (
-    <div>
+    <div className="painel">
       <h1>Painel de Ideias</h1>
 
       <form onSubmit={aoAdicionar}>
@@ -42,15 +64,37 @@ function App() {
         <button type="submit">Adicionar</button>
       </form>
 
-      {erro && <p>{erro}</p>}
+      {erro && <p className="erro">{erro}</p>}
 
       <ul>
         {ideias.map((ideia) => (
-          <li key={ideia.id}>{ideia.texto}</li>
+          <li key={ideia.id}>
+            <input
+              type="checkbox"
+              checked={ideia.feita}
+              onChange={() => alternarFeita(ideia.id)}
+            />
+
+            <span className={ideia.feita ? "feita" : ""}>
+              {ideia.texto}
+            </span>
+
+            <button
+              type="button"
+              onClick={() => aoRemover(ideia.id)}
+            >
+              ✕
+            </button>
+          </li>
         ))}
       </ul>
+
+      <p className="contador">
+        {`${ideias.length} ideias no painel · ${ideiasConcluidas} concluídas`}
+      </p>
     </div>
   );
 }
 
 export default App;
+
