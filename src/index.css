@@ -1,121 +1,31 @@
-#root {
-  width: 100%;
+body {
+  background-color: pink;
+  font-family: Arial;
 }
 
 .painel {
-  width: 100%;
-  max-width: 700px;
-  margin: 50px auto;
-  padding: 35px;
-  background-color: #fff0f5;
-  border: 2px solid #f3b6c8;
-  border-radius: 20px;
-  box-shadow: 0 8px 25px rgba(214, 93, 130, 0.15);
+  background-color: white;
+  width: 400px;
+  padding: 20px;
 }
 
-.painel h1 {
-  text-align: center;
-  margin-bottom: 30px;
-  color: #c94f7c;
-  font-size: 32px;
+h1 {
+  color: #d63384;
 }
 
-.painel form {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.painel form input[type="text"] {
-  flex: 1;
-  padding: 13px 15px;
-  border: 2px solid #f3b6c8;
-  border-radius: 10px;
-  font-size: 16px;
-  outline: none;
-  background-color: #ffffff;
-}
-
-.painel form input[type="text"]:focus {
-  border-color: #d96b91;
-  box-shadow: 0 0 0 3px rgba(217, 107, 145, 0.15);
-}
-
-.painel button {
-  padding: 12px 20px;
-  border: none;
-  border-radius: 10px;
-  background-color: #d96b91;
+button {
+  background-color: #d63384;
   color: white;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  transition: 0.2s;
+  border: none;
+  padding: 8px;
 }
 
-.painel button:hover {
-  background-color: #c6537d;
-  transform: translateY(-1px);
-}
-
-.erro {
-  color: #c62855;
-  background-color: #ffe0e9;
-  border: 1px solid #f3b6c8;
-  padding: 10px 15px;
-  border-radius: 10px;
-  margin-bottom: 15px;
-}
-
-.painel ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.painel li {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 15px;
-  margin-bottom: 12px;
-  border: 1px solid #f3b6c8;
-  border-radius: 12px;
-  background-color: #ffffff;
-  box-shadow: 0 3px 8px rgba(214, 93, 130, 0.08);
-}
-
-.painel li input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  accent-color: #d96b91;
-  cursor: pointer;
-}
-
-.painel li span {
-  flex: 1;
-  color: #5f3042;
+li {
+  background-color: #ffe6f0;
+  padding: 8px;
 }
 
 .feita {
   text-decoration: line-through;
-  color: #a47787 !important;
-}
-
-.painel li button {
-  padding: 6px 10px;
-  background-color: #f6a6bd;
-  font-size: 14px;
-}
-
-.painel li button:hover {
-  background-color: #df6f94;
-}
-
-.contador {
-  margin-top: 25px;
-  text-align: center;
-  color: #a34d6d;
-  font-weight: bold;
 }
 
