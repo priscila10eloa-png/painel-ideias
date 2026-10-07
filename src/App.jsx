@@ -10,49 +10,53 @@ function App() {
   function aoAdicionar(event) {
     event.preventDefault();
 
-    if (!novaIdeia.trim()) {
+    if (novaIdeia.trim() == "") {
       setErro("Digite sua ideia antes de adicionar.");
       return;
     }
 
     const ideia = {
       id: Date.now(),
-      texto: novaIdeia.trim(),
-      feita: false,
+      texto: novaIdeia,
+      feita: false
     };
 
-    setIdeias((atual) => [...atual, ideia]);
+    setIdeias([...ideias, ideia]);
     setNovaIdeia("");
     setErro("");
   }
 
-  function alternarFeita(id) {
-    setIdeias((atual) =>
-      atual.map((ideia) =>
-        ideia.id === id
-          ? { ...ideia, feita: !ideia.feita }
-          : ideia
-      )
+  function concluir(id) {
+    setIdeias(
+      ideias.map((ideia) => {
+        if (ideia.id == id) {
+          return {
+            ...ideia,
+            feita: !ideia.feita
+          };
+        }
+
+        return ideia;
+      })
     );
   }
 
-  function aoRemover(id) {
-    setIdeias((atual) =>
-      atual.filter((ideia) => ideia.id !== id)
+  function remover(id) {
+    setIdeias(
+      ideias.filter((ideia) => ideia.id != id)
     );
   }
 
-  const ideiasConcluidas = ideias.filter(
+  const concluidas = ideias.filter(
     (ideia) => ideia.feita
   ).length;
 
   return (
     <div className="painel">
-      <h1>Painel de Ideias</h1>
+      <h1>Minhas Ideias</h1>
 
       <form onSubmit={aoAdicionar}>
         <input
-          type="text"
           value={novaIdeia}
           onChange={(event) => {
             setNovaIdeia(event.target.value);
@@ -72,7 +76,7 @@ function App() {
             <input
               type="checkbox"
               checked={ideia.feita}
-              onChange={() => alternarFeita(ideia.id)}
+              onChange={() => concluir(ideia.id)}
             />
 
             <span className={ideia.feita ? "feita" : ""}>
@@ -81,7 +85,7 @@ function App() {
 
             <button
               type="button"
-              onClick={() => aoRemover(ideia.id)}
+              onClick={() => remover(ideia.id)}
             >
               ✕
             </button>
@@ -90,11 +94,10 @@ function App() {
       </ul>
 
       <p className="contador">
-        {`${ideias.length} ideias no painel · ${ideiasConcluidas} concluídas`}
+        {`${ideias.length} ideias no painel · ${concluidas} concluídas`}
       </p>
     </div>
   );
 }
 
 export default App;
-
